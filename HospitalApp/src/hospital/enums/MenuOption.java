@@ -10,5 +10,9 @@ package hospital.enums;
  * @author Luciane Hoshino
  */
 public class MenuOption {
-
+    SORT,
+    SEARCH,
+    ADD_RECORD,
+    SAVE,
+    EXIT
 }
