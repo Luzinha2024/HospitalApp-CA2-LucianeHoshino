@@ -4,11 +4,38 @@
  */
 
 package hospital.model;
+import hospital.enums.ManagerType;
+import hospital.enums.Department;
 
 /**
  *
  * @author Luciane Hoshino
  */
 public class Person {
+    private String name;
+    private ManagerType managerType;
+    private Department department;
 
+    public Person(String name, ManagerType managerType, Department department) {
+        this.name = name;
+        this.managerType = managerType;
+        this.department = department;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ManagerType getManagerType() {
+        return managerType;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    @Override
+    public String toString() {
+        return name + " - " + managerType + " - " + department;
+    }
 }
