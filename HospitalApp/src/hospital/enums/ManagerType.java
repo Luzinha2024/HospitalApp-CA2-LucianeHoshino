@@ -10,5 +10,7 @@ package hospital.enums;
  * @author Luciane Hoshino
  */
 public class ManagerType {
-
+    HEAD_MANAGER,
+    ASSISTANT_MANAGER,
+    TEAM_LEAD
 }
