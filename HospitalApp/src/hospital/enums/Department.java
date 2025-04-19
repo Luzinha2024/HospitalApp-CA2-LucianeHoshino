@@ -10,5 +10,8 @@ package hospital.enums;
  * @author Luciane Hoshino
  */
 public class Department {
+ EMERGENCY,
+ TECH_SUPPORT,
+ HR        
 
-}
+         }
