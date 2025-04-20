@@ -7,11 +7,12 @@ package hospital.enums;
 
 /**
  *
- * @author Luciane Hoshino
+ * @author lucia
  */
-public class Department {
- EMERGENCY,
- TECH_SUPPORT,
- HR        
-
-         }
+public enum Department {
+  
+    EMERGENCY,
+    TECH_SUPPORT,
+    HR,
+    PHYSIOTHERAPY
+}
