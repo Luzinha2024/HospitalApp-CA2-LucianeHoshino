@@ -11,10 +11,10 @@ package hospital.enums;
  */
 public enum MenuOption {
     
-    SORT,
-    SEARCH,
-    ADD_RECORD,
-    REMOVE_RECORD,
+    SORT_EMPLOYEE,
+    SEARCH_EMPLOYEE,
+    ADD_EMPLOYEE,
+    REMOVE_EMPLOYEE,
     GENERATE_RANDOM_EMPLOYEE,
     ALL_EMPLOYEES,
     SAVE,
