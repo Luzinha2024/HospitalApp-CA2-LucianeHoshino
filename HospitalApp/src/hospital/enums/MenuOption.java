@@ -7,12 +7,16 @@ package hospital.enums;
 
 /**
  *
- * @author Luciane Hoshino
+ * @author lucia
  */
-public class MenuOption {
+public enum MenuOption {
+    
     SORT,
     SEARCH,
     ADD_RECORD,
+    REMOVE_RECORD,
+    GENERATE_RANDOM_EMPLOYEE,
+    ALL_EMPLOYEES,
     SAVE,
     EXIT
 }
