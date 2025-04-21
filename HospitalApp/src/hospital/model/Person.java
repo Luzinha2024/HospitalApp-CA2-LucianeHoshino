@@ -9,7 +9,7 @@ import hospital.enums.Department;
 
 /**
  *
- * @author Luciane Hoshino
+ * @author lucia
  */
 public class Person {
     private String name;
