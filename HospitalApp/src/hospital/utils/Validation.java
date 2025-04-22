@@ -9,9 +9,13 @@ package hospital.utils;
  *
  * @author lucia
  */
-public class Validation {
+        public class Validation {
 
-public static boolean isValidName(String name) {
-        return name != null && name.matches("[A-Za-z ]+");
+        public static boolean isValidName(String name) {
+          return name != null && name.matches("[A-Za-z ]+");
+          
     }
+        
+
 }
+          
