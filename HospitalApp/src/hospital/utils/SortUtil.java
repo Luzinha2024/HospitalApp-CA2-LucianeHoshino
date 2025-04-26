@@ -20,6 +20,16 @@ public class SortUtil {
         Person key = list.get(i);
         int j = i - 1;
 
-        
+        while (j >= 0 && list.get(j).getName().compareToIgnoreCase(key.getName()) > 0) {
+            list.set(j + 1, list.get(j));
+            j = j - 1;
+        }
+        list.set(j + 1, key);
+    }
+}
+
+}
+    
+    
     
 
