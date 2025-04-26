@@ -16,7 +16,7 @@ import java.util.Random;
  */
 public class DataGenerator {
     
-     private static final String[] names = {"Acerola Souza", "Bruno Lucas", "Carlos Alberto", "Diana Silva", "Eva Martins", "Fábio Rocha"};
+     private static final String[] names = {"Alice Souza", "Bruno De Lucas", "Carlos Almeida", "Diana Smith", "Eva Martins", "Fábio Martins"};
     
    public static Person generateRandomPerson() {
         Random rand = new Random();
