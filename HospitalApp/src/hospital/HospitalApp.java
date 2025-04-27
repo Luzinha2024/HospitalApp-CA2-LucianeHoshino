@@ -4,4 +4,32 @@
  */
 package hospital;
 
+import hospital.model.Employee;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
+
+/**
+ *
+ * @author lucia
+ */
+         public class HospitalApp {
+
+             private static List<Employee> people = new ArrayList<>();
+             private static final Scanner scanner = new Scanner(System.in);
+         
+         public static void main(String[] args) {
+             
+              while (true) {
+            System.out.println("\nPlease select an option:");
+            for (hospital.enums.MenuOption option : hospital.enums.MenuOption.values()) {
+                System.out.println(option.ordinal() + 1 + ". " + option);
+ 
+            }
+
+            
+    }
+         }
+           }
+        
