@@ -16,7 +16,6 @@ public enum MenuOption {
     ADD_EMPLOYEE,
     GENERATE_RANDOM_EMPLOYEE,
     ALL_EMPLOYEES,
-    REMOVE_EMPLOYEE,   
     SAVE,
     EXIT
 }
