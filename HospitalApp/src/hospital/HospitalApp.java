@@ -108,4 +108,19 @@ import java.util.Scanner;
             people.add(new Employee(name, manager, dept));
         }
 
+        // Sort the list of employees alphabetically using recursive insertion sort
+        SortUtil.insertionSortRecursive(people, people.size());
+
+        // Show a confirmation and display the first 20 sorted employees (or fewer if less)
+        System.out.println("Sorted Names (Top 20): " + people.size());
+        people.stream().limit(20).forEach(System.out::println);
+
+    } catch (FileNotFoundException e) {
+        // If the file cannot be found, show an error message
+        System.out.println("File not found!");
+    }
+}
+         }
+         
+           
         
