@@ -10,6 +10,8 @@ import hospital.enums.MenuOption;
 import static hospital.enums.MenuOption.EXIT;
 import static hospital.enums.MenuOption.SAVE;
 import hospital.model.Employee;
+import hospital.model.Person;
+import hospital.utils.SearchUtil;
 import hospital.utils.SortUtil;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -86,7 +88,7 @@ import java.util.Scanner;
     System.out.print("Enter file name to read: ");
     String filename = scanner.nextLine(); // Read the file name as input
 
-    try (Scanner fileScanner = new Scanner(new File(filename))) {
+        try (Scanner fileScanner = new Scanner(new File(filename))) {
         // Clear the existing list to avoid duplicates
         people.clear();
 
@@ -115,12 +117,41 @@ import java.util.Scanner;
         System.out.println("Sorted Names (Top 20): " + people.size());
         people.stream().limit(20).forEach(System.out::println);
 
-    } catch (FileNotFoundException e) {
+    }    catch (FileNotFoundException e) {
         // If the file cannot be found, show an error message
         System.out.println("File not found!");
     }
-}
          }
+          private static void searchByName() {
+              // Method that allows the user to search for a person by name using binary search.
+              if (people.isEmpty()) {
+                 System.out.println("List is empty. Sort or Add first."); // If the list of people is empty, show a warning and exit the method.
+                    return;// This prevents the binary search from running on an empty list.
+        }
+             // Ask the user to input the name they want to search for.
+                 System.out.print("Enter name to search: ");
+                 String name = scanner.nextLine();
+                 
+                    // Perform binary search using the name entered.
+                    // The method returns a Person object if found, or null if not.
+                    Person found = SearchUtil.binarySearch(people, name);  
+                   // Display the result:            
+              if (found != null) {
+                 System.out.println("Found: " + found);// If a person was found, print their details.
+        }     else {// Otherwise, show a message saying the person was not found.
+                 System.out.println("Person not found.");
+        }
+    }
+
+        
+    
+    
+    
+    
+    
+    
+}
+         
          
            
         
