@@ -4,8 +4,7 @@
  */
 
 package hospital.model;
-import hospital.enums.ManagerType;
-import hospital.enums.Department;
+
 
 /**
  *
