@@ -7,7 +7,7 @@ package hospital.utils;
 
 import hospital.enums.Department;
 import hospital.enums.ManagerType;
-import hospital.model.Person;
+import hospital.model.Employee;
 import java.util.Random;
 
 /**
@@ -16,13 +16,14 @@ import java.util.Random;
  */
 public class DataGenerator {
     
-     private static final String[] names = {"Alice Souza", "Bruno De Lucas", "Carlos Almeida", "Diana Smith", "Eva Martins", "Fábio Martins"};
+     private static final String[] names = {"Alice Souza", "Bruno De Lucas", "Carlos Almeida", "Diana Smith", "Eva Martins", "Fábio Martins", 
+         "Gabriel Pensador", "Laura Pausine", "Marcelo Telo"};
     
-   public static Person generateRandomPerson() {
+   public static Employee generateRandomPerson() {
         Random rand = new Random();
         String name = names[rand.nextInt(names.length)];
         ManagerType manager = ManagerType.values()[rand.nextInt(ManagerType.values().length)];
         Department dept = Department.values()[rand.nextInt(Department.values().length)];
-        return new Person(name, manager, dept);
+        return new Employee(name, manager, dept);
     }
 }
