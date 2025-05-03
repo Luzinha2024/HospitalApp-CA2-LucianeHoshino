@@ -4,16 +4,8 @@
  */
 package hospital;
 
-import hospital.enums.Department;
-import hospital.enums.ManagerType;
-import hospital.enums.MenuOption;
-import static hospital.enums.MenuOption.EXIT;
-import static hospital.enums.MenuOption.SAVE;
-import hospital.model.Employee;
-import hospital.model.Person;
-import hospital.utils.SearchUtil;
-import hospital.utils.SortUtil;
-import hospital.utils.Validation;
+import static hospital.MenuOption.EXIT;
+import static hospital.MenuOption.SAVE;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -29,118 +21,145 @@ import java.util.Scanner;
  *
  * @author lucia
  */
-        public class HospitalApp {
-             // Create a list to store all Employee objects
-             private static List<Employee> employees = new ArrayList<>();
-             // Create a scanner to read user input from the terminal
-             private static final Scanner scanner = new Scanner(System.in);
-         
-        public static void main(String[] args) {
-             //This is for test
-              Employee e1 = new Employee("Alice Souza", ManagerType.HEAD_MANAGER, Department.EMERGENCY);
-              Employee e2 = new Employee("Carlos Almeida", ManagerType.TEAM_LEAD, Department.HR);
-              Employee e3 = new Employee("Bruno de Lucas", ManagerType.CHIEF_EXECUTIVE_OFFICER_CEO, Department.PHYSIOTHERAPY);
+        public class HospitalApp {// Main class of the application, named HospitalApp
 
-               employees.add(e1);
-               employees.add(e2);
-               employees.add(e3);
-             
-             // Start an infinite loop to keep showing the menu until the user chooses to exit
-             while (true) {
-                       // Display menu options to the user    
-                        System.out.println("\nPlease select an option:");
-            for (hospital.enums.MenuOption option : hospital.enums.MenuOption.values()) {
-                    // Show each option with a number (1-based index)
-                    System.out.println(option.ordinal() + 1 + ". " + option);
+    private static List<Employee> employees = new ArrayList<>(); // Declare a static list to hold all Employee objects across the program
+   
+    private static final Scanner scanner = new Scanner(System.in); // Create a static scanner object to read input from the user (keyboard)
+
+    public static void main(String[] args) {// Main method, the program’s entry point
+
+        // Start an infinite loop to keep showing the menu until the user chooses to exit
+        while (true) {
+            // Display the menu header
+            System.out.println("\nPLEASE SELECT AN OPTION: ");
+            System.out.println("\n------------------------------\n");
+
+            for (MenuOption option : MenuOption.values()) {// Loop through all available menu options and print them with numbers
+                System.out.println(option.ordinal() + 1 + ". " + option);// Print the menu option number and label (ordinal + 1 makes it 1-based index)
             }
-                 int choice = -1; // Variable to store the user's selected option, initialized to an invalid value
-                 System.out.print("Your choice: "); // Prompt the user to enter a menu option
+
+            int choice = -1;// Variable to store the user's menu choice
+
+            System.out.println("\n------------------------------\n");// Draw a separator line
+            System.out.print("YOUR CHOICE (1-7): ");// Prompt the user to enter a choice
 
             try {
-                   String input = scanner.nextLine(); //Read the user's input as a string to avoid input mismatch errors
-                      choice = Integer.parseInt(input);  //Try to convert the input string to an integer
+                 // Read the user's input as a string
+                String input = scanner.nextLine();
+                // Convert the string input into an integer
+                choice = Integer.parseInt(input);
 
-              //  Check if the entered number is within the valid range of menu options
-            if (choice < 1 || choice > MenuOption.values().length) {
-                         System.out.println("Invalid option. Please select between 1 and " + MenuOption.values().length + ".");
-                      continue; // Restart the loop to ask the user again
-    }
-
-}           catch (NumberFormatException e) {
-               //  If the input cannot be parsed as an integer (e.g., the user typed letters or symbols)
-                        System.out.println("Invalid input. Please enter a number only.");
-                     continue; // Restart the loop and prompt the user again
-}   
-
-            // Get the selected menu option based on the user's choice (adjusted by -1)
-            switch (hospital.enums.MenuOption.values()[choice - 1]) {
-                // Call the appropriate method for each menu option
-                case SORT_EMPLOYEE -> sortFromFile();// Sort employees from a file
-                case SEARCH_EMPLOYEE -> searchEmployeeByName(); // Search for an employee by name
-                case ADD_EMPLOYEE -> addNewEmployee();// Add a new employee manually
-                case GENERATE_RANDOM_EMPLOYEE -> generateRandomEmployee();// Generate a random employee
-                case ALL_EMPLOYEES -> displayAllEmployees();// Show all employees              
-                case SAVE -> saveEmployeeToFile(); // Save the list of employees to a file              
-                case EXIT -> {//Exit the Menu
-                    
-                    System.out.println("Exiting...");// Exit the application
-                    return;// Break the loop and end the program
+                // Check if the number is outside the valid menu range
+                if (choice < 1 || choice > MenuOption.values().length) {
+                    System.out.println("Invalid option. Please select between 1 and " + MenuOption.values().length + ".");
+                    continue;  // Go back to the menu loop
+                }
+           } catch (NumberFormatException e) {
+                // Handle cases where the user enters something that’s not a number
+                System.out.println("Invalid input. Please enter a number only.");
+                continue;  // Go back to the menu loop
+            }
+            switch (MenuOption.values()[choice - 1]) {// Use a switch statement to handle the selected menu option
+                case SORT_EMPLOYEE -> sortFromFile();  // Option: sort employees by reading from file
+                case SEARCH_EMPLOYEE -> searchEmployeeByName();  // Option: search employee by name
+                case ADD_EMPLOYEE -> addNewEmployee();  // Option: add a new employee manually
+                case GENERATE_RANDOM_EMPLOYEE -> generateRandomEmployee();  // Option: generate a random employee
+                case ALL_EMPLOYEES -> displayAllEmployees();  // Option: show all employees
+                case SAVE -> saveEmployeeToFile();  // Option: save the employee list to a file
+                case EXIT -> {  // Option: exit the program
+                    System.out.println("Exiting...");  // Inform the user
+                    return;  // Exit the main loop and end the program
                 }
             }
-          }
         }
-        private static void sortFromFile() {
-                 // Ask the user to enter the name of the file to read employee names from
-                  System.out.print("Enter file name to read: ");
-                   String filename = scanner.nextLine(); // Read the file name as input
-             try (Scanner fileScanner = new Scanner(new File(filename))) {
-                 // Clear the existing list to avoid duplicates
-                  employees.clear();
-                 // Read each line from the file (each line is assumed to contain a name)
-            while (fileScanner.hasNextLine()) {
-                     String name = fileScanner.nextLine().trim(); // Remove extra spaces
-                     // Randomly assign a ManagerType from the enum
-                    hospital.enums.ManagerType manager = hospital.enums.ManagerType.values()[
-                     new Random().nextInt(hospital.enums.ManagerType.values().length)
-            ];
-                  // Randomly assign a Department from the enum
-                  hospital.enums.Department dept = hospital.enums.Department.values()[
-                     new Random().nextInt(hospital.enums.Department.values().length)
-            ];
-                   // Create a new Employee using the name, random manager, and department
-                   employees.add(new Employee(name, manager, dept));
-        }
-                    // Sort the list of employees alphabetically using recursive insertion sort
-                    SortUtil.insertionSortRecursive(employees, employees.size());
-                   // Show a confirmation and display the first 20 sorted employees (or fewer if less)
-                     System.out.println("Sorted Names (Top 20): " + employees.size());
-                       employees.stream().limit(20).forEach(System.out::println);
-
-    }        catch (FileNotFoundException e) {
-                         // If the file cannot be found, show an error message
-                        System.out.println("File not found!");
     }
-         }
-        private static void searchEmployeeByName() {
-              // Method that allows the user to search for a person by name using binary search.
-              if (employees.isEmpty()) {
-                 System.out.println("List is empty. Sort or Add first."); //If the list of people is empty, show a warning and exit the method.
-                    return;// This prevents the binary search from running on an empty list.
+    
+    
+    // Private method to read names from a file, assign random roles, sort, and display the top 20
+    private static void sortFromFile() {
+    // Ask the user to enter the file name
+            System.out.print("Enter file name to read: ");
+            String filename = scanner.nextLine();  // Read the file name input from the user
+
+        try (Scanner fileScanner = new Scanner(new File(filename))) {// Clear the current employees list so we start fresh
+            employees.clear();
+
+            while (fileScanner.hasNextLine()) { // Loop through each line in the file
+                String name = fileScanner.nextLine().trim();// Read and trim the name from the file
+                // Randomly pick a manager type from the enum
+                ManagerType manager = ManagerType.values()[new Random().nextInt(ManagerType.values().length)];
+                // Randomly pick a department from the enum
+                Department dept = Department.values()[new Random().nextInt(Department.values().length)];
+                employees.add(new Employee(name, manager, dept));// Create a new Employee object with the name, manager, and department
+            }
+             // Sort the list of employees alphabetically using recursive insertion sort
+        SortUtil.insertionSortRecursive(employees, employees.size());
+
+        // Print the total number of sorted names (and limit display to top 20)
+            System.out.println("Sorted Names (Top 20): " + employees.size());
+
+        // Display up to the first 20 sorted employees
+        for (int i = 0; i < Math.min(20, employees.size()); i++) {
+            System.out.println((i + 1) + ". " + employees.get(i));  // Print the employee details
+            System.out.println("------------------------");  // Separator line
         }
-             // Ask the user to input the name they want to search for.
-                 System.out.print("Enter name to search: ");
-                 String name = scanner.nextLine();
-                 
-                    // Perform binary search using the name entered.
-                    // The method returns a Person object if found, or null if not.
-                    Person found = SearchUtil.binarySearch(employees, name);  
-                   // Display the result:            
-              if (found != null) {
-                 System.out.println("Found: " + found);// If a person was found, print their details.
-        }     else {// Otherwise, show a message saying the person was not found.
-                 System.out.println("Employee not found.");
+        } catch (FileNotFoundException e) {// If the file is not found, print an error message
+            System.out.println("File not found!");           
         }
+    }
+    
+    
+    private static void searchEmployeeByName() {// Private method to search for an employee by name in the employees list
+         // Check if the employees list is empty before searching
+        if (employees.isEmpty()) {
+            System.out.println("List is empty. Please sort or add employees first.");
+            return;  // Exit the method early if there’s nothing to search
+    }
+            // Prompt the user to enter the name they want to search for
+            System.out.print("Enter name to search: ");
+          String name = scanner.nextLine();  // Read the user’s input for the search
+
+        Employee found = SearchUtil.sequentialSearch(employees, name); // Call the SearchUtil class to perform a sequential (linear) search
+
+        if (found != null) {// Check if the search found a matching employee
+            System.out.println("Found: " + found);// If found, print the employee details
+        } else { 
+            System.out.println("Employee not found.");// If not found, inform the user
+    }
         }
-        
-         
-          
+    
+    
+    private static void addNewEmployee() {// Private method to manually add a new employee by user input
+           System.out.print("Enter name: ");// Prompt the user to enter the employee’s name
+           String name = scanner.nextLine();// Read the name input
+
+        if (!Validation.isValidName(name)) {// Validate the entered name using the Validation class
+            System.out.println("Invalid name."); // If invalid, show an error
+            return;// Exit the method without adding
+        }
+
+            System.out.println("Select Manager Type (1-4):");// Prompt the user to select a manager type
+        for (int i = 0; i < ManagerType.values().length; i++) {
+            System.out.println((i + 1) + ". " + ManagerType.values()[i]);// List options with numbers
+        }
+        int managerChoice = scanner.nextInt();// Read the selected number
+        ManagerType manager = ManagerType.values()[managerChoice - 1];// Convert to the enum
+
+             System.out.println("Select Department (1-4):");    // Prompt the user to select a department
+        for (int i = 0; i < Department.values().length; i++) {
+            System.out.println((i + 1) + ". " + Department.values()[i]); // List options with numbers
+        }
+        int deptChoice = scanner.nextInt();// Read the selected number
+        scanner.nextLine(); // Clear buffer (to handle the newline)
+        Department dept = Department.values()[deptChoice - 1];// Convert to the enum
+
+        Employee newPerson = new Employee(name, manager, dept);// Create a new Employee object with the provided name, manager, and department
+        employees.add(newPerson); // Add the new employee to the employees list
+
+             System.out.println(name + " has been added as " + manager + " to " + dept + " successfully!");// Show a success message to confirm the addition
+    }
+
+    
+    
+    
