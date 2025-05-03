@@ -10,22 +10,25 @@ import java.util.List;
  *
  * @author lucia
  */
-           public class SearchUtil {// Utility class that provides search-related methods for hospital staff data.
-          //Performs a binary search on a sorted list of employees to find a person by name.
-           public static Person binarySearch(List<Employee> list, String target) {
+           // Define the SearchUtil class, which provides search-related utility methods
+public class SearchUtil {
                
-                      int left = 0, right = list.size() - 1;// Initialize the search boundaries
-
-              while (left <= right) {// Loop until the search range is valid
-                   int mid = left + (right - left) / 2;// Calculate the middle index to avoid overflow
-                    Person midPerson = list.get(mid);// Get the person at the middle index
-
-                      int result = target.compareToIgnoreCase(midPerson.getName());// Compare the target name with the middle person's name (case-insensitive)
-
-              if (result == 0) return midPerson;// If the names match, return the person
-              if (result < 0) right = mid - 1;// If the target name comes before the middle name, search the left half
-              else left = mid + 1;// If the target name comes after the middle name, search the right half
+    // Define a public static method called sequentialSearch that takes a list of Employee objects 
+    // and a searchName string, and returns the Employee if found (or null if not found)
+    public static Employee sequentialSearch(List<Employee> employeeList, String searchName) {
+        
+        // Loop through each Employee object in the provided employeeList
+        for (Employee employee : employeeList) {
+            
+            // Check if the current employee's name matches the searchName (ignoring case)
+            if (employee.getName().equalsIgnoreCase(searchName)) {
+                
+                // If a match is found, return the matching Employee object
+                return employee;
+            }
         }
-                    return null;// If no match is found, return null
+        
+        // If no match is found after looping through the list, return null
+        return null;
     }
 }
