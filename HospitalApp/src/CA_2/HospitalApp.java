@@ -192,4 +192,32 @@ import java.util.Scanner;
     }
     
 
+    private static void saveEmployeeToFile() {// Private method to save the current list of employees to a file
+            System.out.print("Enter file name to save (e.g., list.txt): ");// Ask the user for the name of the file to save to
+                 String filename = scanner.nextLine().trim();// Read and trim the input
+
+        if (filename.isEmpty()) {  // Check if the user provided an empty file name
+            System.out.println("No file name provided. Save operation cancelled.");// Warn and exit
+                 return;
+        } 
+
+        if (employees.isEmpty()) { // Check if there is any employee data to save
+            System.out.println("No data to save.");// Warn and exit if the list is empty
+                 return;
+        }
+          // Try to open the file and write the employee data
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) 
+        {
+            for (Employee person : employees) {// Loop through each employee and write their details to the file
+                writer.println(person);// Write the employee’s details (uses toString)
+                writer.println("------------------------");// Write a separator line
+            }
+                System.out.println("Employees list saved to: " + filename);// Confirm success to the user
+        } catch (IOException e) {
+                 System.out.println("Error saving file: " + e.getMessage());// If there is an error during file writing, show the error message
+        }
+    }
+}
+
+    
     
