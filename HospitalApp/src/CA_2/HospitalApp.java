@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package hospital;
+package CA_2;
 
-import static hospital.MenuOption.EXIT;
-import static hospital.MenuOption.SAVE;
+import static CA_2.MenuOption.EXIT;
+import static CA_2.MenuOption.SAVE;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -160,6 +160,36 @@ import java.util.Scanner;
              System.out.println(name + " has been added as " + manager + " to " + dept + " successfully!");// Show a success message to confirm the addition
     }
 
+    private static void generateRandomEmployee() {
+        // Check if the employees list is not empty (meaning the file has been loaded and sorted)
+        if (!employees.isEmpty()) {  
+             // Call the DataGenerator method to generate a random Employee using names from the existing list
+             Employee randomEmployee = DataGenerator.generateRandomPersonFromList(employees);    
+             // Add the newly generated random Employee to the main employees list
+                 employees.add(randomEmployee);  
+            // Print a confirmation message showing the details of the added random Employee
+             System.out.println("Random employee added: " + randomEmployee);
     
+}       else {
+             // If the employees list is empty, show a warning message to the user
+             System.out.println("Employee list is empty! Please load and sort the file first.");
+}
     
+    }
+    private static void displayAllEmployees() {// Private method to display all employees currently stored in the list
+        if (employees.isEmpty()) {// Check if the employees list is empty
+            System.out.println("No employees to display.");// Inform the user if there are no employees
+            return;// Exit the method early
+        }
+
+             System.out.println("All Employees:");// Print a header to indicate the start of the list
+                 int count = 1;  // Initialize a counter to number the employees
+        for (Employee p : employees) {// Loop through each employee in the list
+               System.out.println(count + ". " + p);// Print the employee number and details (using toString)
+                System.out.println("------------------------"); // Print a separator line
+                   count++;// Increment the counter for the next employee
+        }
+    }
+    
+
     

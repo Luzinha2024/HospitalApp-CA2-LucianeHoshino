@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package hospital;
+package CA_2;
 
 /**
  *
@@ -13,10 +13,10 @@ public enum MenuOption {// Each item below is a menu option with a friendly disp
     
     // Option 1: sort the employee list
     SORT_EMPLOYEE("Sort Employees"),              // Option 1: sort the employee list
-    SEARCH_EMPLOYEE("Search by Name"),            // Option 2: search an employee by name
+    SEARCH_EMPLOYEE("Search by Employee Name"),            // Option 2: search an employee by name
     ADD_EMPLOYEE("Add Employee"),                 // Option 3: manually add an employee
-    GENERATE_RANDOM_EMPLOYEE("Generate Random"),  // Option 4: create a random employee
-    ALL_EMPLOYEES("Show All"),                    // Option 5: show all employees
+    GENERATE_RANDOM_EMPLOYEE("Generate Random Employees"),  // Option 4: create a random employee
+    ALL_EMPLOYEES("Show All Employee"),                    // Option 5: show all employees
     SAVE("Save to File"),                         // Option 6: save the list to a file
     EXIT("Exit");                                 // Option 7: exit the menu
 
