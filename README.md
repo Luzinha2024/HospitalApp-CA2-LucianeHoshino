@@ -60,3 +60,8 @@ Algorithms Used
 - Employee.java / Person.java: Data models
 - ManagerType.java /Department.java / MenuOption.java: Enums
 
+Project Justification
+
+For this HospitalApp project, I chose to implement a recursive insertion sort to sort the list of employee names because it satisfies the academic requirement to demonstrate recursion, while being easy to understand and efficient enough for small datasets.
+For the search function, I selected an iterative sequential search instead of binary search. Although binary search is faster, it only works on sorted lists. Since the list may become unsorted after adding or generating new employees, the sequential search ensures correctness and simplicity, which is ideal for a beginner project like this.
+Additionally, I structured the menu using Java enums, making the user interface more organized and maintainable. Input validation ensures data integrity, and random employee generation provides a way to test the system with varied data. Together, these design decisions create a reliable and extendable system that fulfills the assignment’s requirements while remaining beginner-friendly.
