@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.Random;    
 import java.util.Scanner;
 
 
@@ -60,7 +60,10 @@ import java.util.Scanner;
                 System.out.println("Invalid input. Please enter a number only.");
                 continue;  // Go back to the menu loop
             }
+            
+            
             switch (MenuOption.values()[choice - 1]) {// Use a switch statement to handle the selected menu option
+                
                 case SORT_EMPLOYEE -> sortFromFile();  // Option: sort employees by reading from file
                 case SEARCH_EMPLOYEE -> searchEmployeeByName();  // Option: search employee by name
                 case ADD_EMPLOYEE -> addNewEmployee();  // Option: add a new employee manually
@@ -74,11 +77,12 @@ import java.util.Scanner;
             }
         }
     }
+   
     
-    
-    // Private method to read names from a file, assign random roles, sort, and display the top 20
-    private static void sortFromFile() {
-    // Ask the user to enter the file name
+           // Private method to read names from a file, assign random roles, sort, and display the top 20
+private static void sortFromFile() {
+     
+            // Ask the user to enter the file name
             System.out.print("Enter file name to read: ");
             String filename = scanner.nextLine();  // Read the file name input from the user
 
@@ -110,7 +114,10 @@ import java.util.Scanner;
     }
     
     
-    private static void searchEmployeeByName() {// Private method to search for an employee by name in the employees list
+    
+    
+private static void searchEmployeeByName() {// Private method to search for an employee by name in the employees list
+        
          // Check if the employees list is empty before searching
         if (employees.isEmpty()) {
             System.out.println("List is empty. Please sort or add employees first.");
@@ -128,9 +135,12 @@ import java.util.Scanner;
             System.out.println("Employee not found.");// If not found, inform the user
     }
         }
+        
+        
     
     
-    private static void addNewEmployee() {// Private method to manually add a new employee by user input
+private static void addNewEmployee() {// Private method to manually add a new employee by user input
+        
            System.out.print("Enter name: ");// Prompt the user to enter the employee’s name
            String name = scanner.nextLine();// Read the name input
 
@@ -160,8 +170,12 @@ import java.util.Scanner;
              System.out.println(name + " has been added as " + manager + " to " + dept + " successfully!");// Show a success message to confirm the addition
     }
 
-    private static void generateRandomEmployee() {
+    
+    
+private static void generateRandomEmployee() {
+        
         // Check if the employees list is not empty (meaning the file has been loaded and sorted)
+        
         if (!employees.isEmpty()) {  
              // Call the DataGenerator method to generate a random Employee using names from the existing list
              Employee randomEmployee = DataGenerator.generateRandomPersonFromList(employees);    
@@ -176,7 +190,11 @@ import java.util.Scanner;
 }
     
     }
-    private static void displayAllEmployees() {// Private method to display all employees currently stored in the list
+    
+    
+    
+private static void displayAllEmployees() {// Private method to display all employees currently stored in the list
+        
         if (employees.isEmpty()) {// Check if the employees list is empty
             System.out.println("No employees to display.");// Inform the user if there are no employees
             return;// Exit the method early
@@ -191,8 +209,11 @@ import java.util.Scanner;
         }
     }
     
+    
+    
 
-    private static void saveEmployeeToFile() {// Private method to save the current list of employees to a file
+private static void saveEmployeeToFile() {// Private method to save the current list of employees to a file
+        
             System.out.print("Enter file name to save (e.g., list.txt): ");// Ask the user for the name of the file to save to
                  String filename = scanner.nextLine().trim();// Read and trim the input
 
