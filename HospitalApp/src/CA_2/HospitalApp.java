@@ -83,7 +83,7 @@ import java.util.Scanner;
 private static void sortFromFile() {
      
             // Ask the user to enter the file name
-            System.out.print("Enter file name to read: ");
+            System.out.print("Enter file name to read (e.g., Applicants_Form.txt): ");
             String filename = scanner.nextLine();  // Read the file name input from the user
 
         try (Scanner fileScanner = new Scanner(new File(filename))) {// Clear the current employees list so we start fresh
