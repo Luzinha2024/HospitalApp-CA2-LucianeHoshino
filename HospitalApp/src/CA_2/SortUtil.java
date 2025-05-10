@@ -20,7 +20,7 @@ public class SortUtil { // Utility class that provides sorting methods for Emplo
          Employee last = list.get(n - 1);// Store the last element to be inserted in the correct position
          insertionSortRecursive (list, n-1);// Recursively sort the first n-1 elements
        
-             int j = n-2;// Find the correct position for the 'last' element by comparing names
+             int j = n - 2;// Find the correct position for the 'last' element by comparing names
         
         while (j >= 0 && list.get(j).getName().compareToIgnoreCase(last.getName())> 0){
             // Shift elements that are greater than 'last' one position to the right
